@@ -1,15 +1,15 @@
 const data_sources = {
   "geojson-trailheads": {
     type: "geojson",
-    data: "../data/trailheads-with-final-votes-and-priorities.geojson",
+    data: "./data/trailheads-with-final-votes-and-priorities.geojson",
   },
   "geojson-trail-segments": {
     type: "geojson",
-    data: "../data/trail-segments.geojson",
+    data: "./data/trail-segments.geojson",
   },
   "geojson-focus-areas": {
     type: "geojson",
-    data: "../data/focus-areas.geojson",
+    data: "./data/focus-areas.geojson",
   },
   "tile-bounds": {
     type: "vector",
