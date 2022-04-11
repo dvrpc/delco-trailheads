@@ -79,9 +79,19 @@ const layers = {
     paint: {
       "circle-radius": 5,
       "circle-opacity": 0.8,
-      "circle-color": "white",
       "circle-stroke-color": "black",
       "circle-stroke-width": 2,
+      "circle-color": [
+        "match",
+        ["get", "trail_de_3"],
+        "Yes",
+        "blue",
+        "Maybe",
+        "orange",
+        "No",
+        "red",
+        /* other */ "#ccc",
+      ],
     },
   },
   selectedtrailheads: {
