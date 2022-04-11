@@ -1,4 +1,5 @@
 import { layers, data_sources } from "./data.js";
+import { click_on_trailheads } from "./popup.js";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZHZycGNvbWFkIiwiYSI6ImNrczZlNDBkZzFnOG0ydm50bXR0dTJ4cGYifQ.VaJDo9EtH2JyzKm3cC0ypA";
@@ -14,8 +15,5 @@ map.on("load", () => {
 
   for (const lyr in layers) map.addLayer(layers[lyr]);
 
-  //   use_pointer(map);
-  //   click_on_trailheads(map);
-
-  //   assign_form_logic(map);
+  click_on_trailheads(map);
 });
