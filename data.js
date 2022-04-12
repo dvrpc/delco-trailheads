@@ -7,10 +7,6 @@ const data_sources = {
     type: "geojson",
     data: "./data/trail-segments.geojson",
   },
-  "geojson-focus-areas": {
-    type: "geojson",
-    data: "./data/focus-areas.geojson",
-  },
   "tile-bounds": {
     type: "vector",
     url: "https://www.tiles.dvrpc.org/data/census_boundaries.json",
@@ -28,15 +24,6 @@ const layers = {
       "line-color": "#B0C4DE",
     },
     filter: ["==", "CNTY_NAME", "Delaware County"],
-  },
-  study: {
-    id: "study",
-    type: "fill",
-    source: "geojson-focus-areas",
-    paint: {
-      "fill-color": "yellow",
-      "fill-opacity": 0.6,
-    },
   },
   existingtrailsegments: {
     id: "existing-trail-segments",
@@ -57,18 +44,7 @@ const layers = {
     paint: {
       "line-opacity": 0.7,
       "line-dasharray": [1, 1],
-      "line-color": [
-        "case",
-        ["==", ["get", "status"], "Construction"],
-        "#a416ff",
-        ["==", ["get", "status"], "Design"],
-        "#511aff",
-        ["==", ["get", "status"], "Potential"],
-        "#ff9f3d",
-        ["==", ["get", "status"], "Proposed"],
-        "#e60000",
-        "black",
-      ],
+      "line-color": "black",
       "line-width": 3,
     },
   },
@@ -77,34 +53,24 @@ const layers = {
     type: "circle",
     source: "geojson-trailheads",
     paint: {
-      "circle-radius": 5,
       "circle-opacity": 0.8,
       "circle-stroke-color": "black",
       "circle-stroke-width": 2,
+      "circle-radius": [
+        "match",
+        ["get", "focus"],
+        "Yes",
+        5,
+        /* other */ 2,
+      ],
       "circle-color": [
         "match",
-        ["get", "trail_de_3"],
+        ["get", "focus"],
         "Yes",
-        "blue",
-        "Maybe",
-        "orange",
-        "No",
-        "red",
+        "yellow",
         /* other */ "#ccc",
       ],
     },
-  },
-  selectedtrailheads: {
-    id: "selected-trailheads",
-    type: "circle",
-    source: "geojson-trailheads",
-    paint: {
-      "circle-radius": 10,
-      "circle-color": "yellow",
-      "circle-stroke-color": "black",
-      "circle-stroke-width": 2,
-    },
-    filter: ["==", "gid", "-1"],
   },
 };
 
