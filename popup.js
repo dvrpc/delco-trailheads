@@ -47,13 +47,12 @@ const click_on_trailheads = (map) => {
     clearPopups();
     let props = e.features[0].properties;
     let headline = "";
-    if (props.focus == "Yes"){
-      headline = "Trailhead for network planning focus"
+    if (props.focus == "Yes") {
+      headline = `<h3>${props.trailname}</h3><h4>${props.cross_streets}</h4>`;
+    } else {
+      headline = "<h3>Trailhead</h3>";
     }
-    else {
-      headline = "Trailhead"
-    }
-    let msg = `<h3>${headline}</h3><ul><li>Stakeholder Votes: ${props.votes}</li><li>Prioritization Score: ${props.final_scor}</li></ul>`;
+    let msg = `${headline}<ul><li>Stakeholder Votes: ${props.votes}</li><li>Prioritization Score: ${props.final_scor}</li></ul>`;
     bindPopup(map, msg, e);
   });
 };
